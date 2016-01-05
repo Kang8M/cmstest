@@ -76,7 +76,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  */
 define('CMS_HOSTNAME','localhost');
 define('CMS_USERNAME','root');
-define('CMS_PASSWORD','');
+define('CMS_PASSWORD','root');
 define('CMS_DATABASE','cmstest');
 
 $active_group = 'default';

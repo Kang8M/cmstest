@@ -69,34 +69,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <div id="container">
 	<h1>Welcome to CodeIgniter!</h1>
-
-	<table border="1">
-		<thead>
-			<tr>
-				<th>ID</th>
-				<th>Name</th>
-				<th>Sex</th>
-				<th colspan="2">Action</th>
-			</tr>
-		</thead>
-		<tbody>
-			<?php
-				if(!is_null($tests)):
-					foreach ($tests as $test): ?>
-			<tr>
-				<td><?php echo $test->id; ?></td>
-				<td><?php echo $test->name; ?></td>	
-				<td><?php echo $test->sex; ?></td>
-				<td>Edit</td>	
-				<td>Delete</td>	
-			</tr>
-			<?php
-					endforeach;
-				endif;
-			?>
-		</tbody>
-	</table>
-
+	<a href="<?php echo base_url("setup/selecttable");?>">Starting Srtup</a>
 	<p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds. <?php echo  (ENVIRONMENT === 'development') ?  'CodeIgniter Version <strong>' . CI_VERSION . '</strong>' : '' ?></p>
 </div>
 

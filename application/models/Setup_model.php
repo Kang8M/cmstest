@@ -2,13 +2,38 @@
 
 class Setup_model extends CI_Model
 {
-//	private $CMSTable;
-
 	public function __construct()
 	{
 		parent::__construct();
 		$this->load->database();
 		$this->load->dbforge();
+	}
+
+	public function setCMSField($_field_value = null)
+	{
+		if(is_null($_field_value)) {
+			return false;
+		} else {
+			$this->dbforge->add_field($_field_value);
+		}
+	}
+
+	public function setupCMSTable($_table_value = null)
+	{
+		if(is_null($_table_value)){
+			return false;
+		} else {
+			$this->dbforge->create_table($_table_value, TRUE);
+		}
+	}
+
+	public function setCMSFieldKey($field = null)
+	{
+		if(is_null($field)) {
+			return false;
+		} else {
+			$this->dbforge->add_key($field,TRUE);
+		}
 	}
 
 	public function getDefaultCMSTable()
@@ -20,24 +45,15 @@ class Setup_model extends CI_Model
 		];
 	}
 
-//	public function setCMSTable($_table_value = null)
-//	{
-//		if(is_null($_table_value)) {
-//			return false;
-//		} else {
-//			$this->CMSTable = $_table_value;
-//		}
-//	}
-
 	public function getCMSField()
 	{
 		return [
 			'tbl_blog' => [
-				'blog_id' => [
+				'id' => [
 					'type' => 'INT',
 					'constraint' => 5,
 					'unsigned' => TRUE,
-					'auto_increment' => TRUE
+					'auto_increment' => TRUE,
 				],
 				'blog_title' => [
 					'type' => 'VARCHAR',
@@ -66,7 +82,7 @@ class Setup_model extends CI_Model
 				],
 			],
 			'tbl_category' => [
-				'id' => [
+				'cate_id' => [
 					'type' => 'INT',
 					'constraint' => 5,
 					'unsigned' => TRUE,
@@ -80,22 +96,12 @@ class Setup_model extends CI_Model
 		];
 	}
 
-	public function setCMSField($_field_value = null)
+	public function getCMSFieldKey()
 	{
-		if(is_null($_field_value)) {
-			return false;
-		} else {
-			$this->dbforge->add_field($_field_value);
-		}
-	}
-
-	public function setupCMSTable($_table_value = null)
-	{
-		if(is_null($_table_value)){
-			return false;
-		} else {
-			$attributes = array('ENGINE' => 'InnoDB');
-			$this->dbforge->create_table($_table_value, FALSE, $attributes);
-		}
+		return [
+			'tbl_blog' => 'id',
+			'tbl_product' => 'title',
+			'tbl_category' => 'cate_id',
+		];
 	}
 }

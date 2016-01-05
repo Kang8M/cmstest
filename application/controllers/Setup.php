@@ -24,8 +24,25 @@ class Setup extends CI_Controller {
 
     public function submitTable()
     {
-        $this->load->post();
+        if(is_null($this->input->post())) {
+            return "error, input null!";
+        } else {
+            $tables = $this->input->post();
+            $fields = $this->setup_model->getCMSField();            
+            $fields_key = $this->setup_model->getCMSFieldKey();            
+            
+            foreach ($tables["push_tables"] as $table) {
+                $this->setup_model->setCMSField( $fields[$table] );    
+                $this->setup_model->setCMSFieldKey( $fields_key[$table] );    
+                $this->setup_model->setupCMSTable($table);
+            }
+
+            redirect('/setup/success');
+        }
     }
 
-
+    public function success()
+    {
+        $this->load->view("setup_success");
+    }
 }
