@@ -70,15 +70,24 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | The $query_builder variables lets you determine whether or not to load
 | the query builder class.
 */
+
+/**
+ * Config database
+ */
+define('CMS_HOSTNAME','localhost');
+define('CMS_USERNAME','root');
+define('CMS_PASSWORD','');
+define('CMS_DATABASE','cmstest');
+
 $active_group = 'default';
 $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => '',
-	'password' => '',
-	'database' => '',
+	'hostname' => CMS_HOSTNAME,
+	'username' => CMS_USERNAME,
+	'password' => CMS_PASSWORD,
+	'database' => CMS_DATABASE,
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
